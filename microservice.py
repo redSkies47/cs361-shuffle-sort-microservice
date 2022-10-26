@@ -21,6 +21,7 @@ initial_order = list()
 song_quantity = 0
 new_order_command = ''
 
+
 # open text file or return error
 # save command or use it to call a method for it
 def get_valid_command():
@@ -55,8 +56,10 @@ def get_valid_command():
 def get_current_playlist():
     """
     Retrieves the current playlist in the initial playlist file.
-    """
+    Updates the song quantity.
 
+    :return: list of strings - each index contains data for one song
+    """
     # reset song quantity
     song_quantity = 0
 
@@ -69,17 +72,34 @@ def get_current_playlist():
     song_quantity = len(initial_order)
     return song_quantity, initial_order
 
+
 # method for shuffle
+def my_shuffle(song_playlist):
+    pass
+
 
 # method for sort
-def sort(song_playlist):
+def my_sort(song_playlist):
     """
-    Description here
+    Generate a new sorted playlist by sorting alphabetically and
+    ignores case of each song entry.
+
+    :song_playlist: list of strings - initial playlist to sort
+    :return: list of strings - each index contains data for one song
     """
     new_sorted_playlist = sorted(song_playlist, key=str.lower)
     return new_sorted_playlist
 
+
 # method for writing a new text file
+def update_text_file(song_playlist):
+    """
+    Writes the provided song playlist into the output text file
+    """
+    with open(output, 'w') as file:
+        for song in song_playlist:
+            file.write(song)
+            file.write('\n')
 
 # logic calling the methods
 
@@ -95,6 +115,17 @@ if __name__ == '__main__':
     # test getting all songs from text file
     song_num, my_order = get_current_playlist()
     print('\nthere are', str(song_num), 'songs in the playlist')
-    print('the order is:\n')
-    for song in my_order:
+    # print('the order is:\n')
+    # for song in my_order:
+    #     print(song)
+
+    
+    # test for sorting alphabetically the playlist
+    new_order1 = my_sort(my_order)
+    print('the new sorted order is:\n')
+    for song in new_order1:
         print(song)
+
+
+    # test placing sorted playlist into output file
+    update_text_file(new_order1)
