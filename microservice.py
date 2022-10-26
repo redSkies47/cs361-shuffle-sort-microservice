@@ -37,6 +37,8 @@ def get_valid_command():
         # get the new order command from the text file
         with open(output) as file:
             new_order_command = file.readline()
+            
+        new_order_command.strip()  # removes new line character
 
         if new_order_command == 'shuffle':
             return True, new_order_command
@@ -56,10 +58,12 @@ def get_current_playlist():
     Retrieves the current playlist in the initial playlist file.
     Updates the song quantity.
 
-    :return: list of strings - each index contains data for one song
+    :return: int, list of strings - a tuple of the number of songs
+                                    & a list where each index = 1 song data
     """
-    # reset song quantity
+    # reset song quantity and initial order
     song_quantity = 0
+    initial_order = list()
 
     # build initial input playlist as a list
     with open(input_playlist) as file:
@@ -107,7 +111,36 @@ def update_text_file(song_playlist):
             file.write('\n')
 
 
-# logic calling the methods
+def microservice(input_file=input_playlist, output_file=output):
+    """
+    Microservice for either shuffling or sorting a music playlist.
+
+    :input_file:
+    :output_file:
+    """
+    # finish = False
+    # while not finish:
+    while True:
+
+        results, my_command = get_valid_command()
+        # print('received a valid command:', str(results))
+
+        if results:
+            song_num, init_playlist = get_current_playlist()
+
+            if my_command == 'shuffle':
+                new_order = my_shuffle(init_playlist)
+
+            # command to sort
+            else:
+                new_order = my_sort(init_playlist)
+
+            update_text_file(new_order)
+            # finish = True
+            new_order_command = ''
+        
+        time.sleep(3)
+
 
 if __name__ == '__main__':
 
@@ -119,18 +152,18 @@ if __name__ == '__main__':
 
 
     # test getting all songs from text file
-    song_num, my_order = get_current_playlist()
-    print('\nthere are', str(song_num), 'songs in the playlist')
+    # song_num, my_order = get_current_playlist()
+    # print('\nthere are', str(song_num), 'songs in the playlist')
     # print('the order is:\n')
     # for song in my_order:
     #     print(song)
 
     
     # test for sorting alphabetically the playlist
-    new_order1 = my_sort(my_order)
-    print('the new sorted order is:\n')
-    for song in new_order1:
-        print(song)
+    # new_order1 = my_sort(my_order)
+    # print('the new sorted order is:\n')
+    # for song in new_order1:
+    #     print(song)
 
 
     # test placing sorted playlist into output file
@@ -142,3 +175,4 @@ if __name__ == '__main__':
     # print('\nthe new shuffled order is:\n')
     # for song in new_order2:
     #     print(song)
+    microservice()
