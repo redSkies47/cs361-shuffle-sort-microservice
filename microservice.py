@@ -7,6 +7,7 @@
 #               file. Depending on the command, the microservice will either
 #               shuffle or alphabetically sort the playlist.
 import time
+import random
 
 # configurations
 input_playlist = 'songs.txt'
@@ -22,8 +23,6 @@ song_quantity = 0
 new_order_command = ''
 
 
-# open text file or return error
-# save command or use it to call a method for it
 def get_valid_command():
     """
     Checks for a new order command in the output file. It confirms
@@ -52,7 +51,6 @@ def get_valid_command():
         return False, issue_message
 
 
-# method for grabbing every line
 def get_current_playlist():
     """
     Retrieves the current playlist in the initial playlist file.
@@ -73,12 +71,18 @@ def get_current_playlist():
     return song_quantity, initial_order
 
 
-# method for shuffle
 def my_shuffle(song_playlist):
-    pass
+    """
+    Generate a new shuffled playlist.
+
+    :song_playlist: list of strings - initial playlist to shuffle
+    :return: list of strings - each index contains data for one song
+    """
+    new_shuffled_playlist = song_playlist.copy()
+    random.shuffle(new_shuffled_playlist)
+    return new_shuffled_playlist
 
 
-# method for sort
 def my_sort(song_playlist):
     """
     Generate a new sorted playlist by sorting alphabetically and
@@ -91,15 +95,17 @@ def my_sort(song_playlist):
     return new_sorted_playlist
 
 
-# method for writing a new text file
 def update_text_file(song_playlist):
     """
     Writes the provided song playlist into the output text file
+
+    :song_playlist: list of strings - playlist to write into text file
     """
     with open(output, 'w') as file:
         for song in song_playlist:
             file.write(song)
             file.write('\n')
+
 
 # logic calling the methods
 
@@ -128,4 +134,11 @@ if __name__ == '__main__':
 
 
     # test placing sorted playlist into output file
-    update_text_file(new_order1)
+    # update_text_file(new_order1)
+
+
+    # test for shuffling the playlist
+    # new_order2 = my_shuffle(my_order)
+    # print('\nthe new shuffled order is:\n')
+    # for song in new_order2:
+    #     print(song)
