@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Shuffle + Sort Microservice is created by redSkies47, written in Python. This microservice aims to provide shuffle and sort functionality to a Music Playlist Maker. It was created for exploring microservices in CS 361 - Software Engineering I. 
+The Shuffle + Sort Microservice was created by redSkies47 and is written in Python. This microservice aims to provide shuffle and sort functionality to a Music Playlist Maker. It was created for exploring microservices in CS 361 - Software Engineering I. 
 
 ## Getting started
 
@@ -14,7 +14,7 @@ Either use `git clone https://github.com/redSkies47/cs361-shuffle-sort-microserv
 
 #### Step 3
 Both the Shuffle + Sort Microservice and the Music Playlist Maker need to access the same input and output files. In `microservice.py`:
-* Update the input text file variable `input_playlist` with appropriate relative path of the Music Playlist Maker's `songs.txt` file.
+* Update the input text file variable `input_playlist` with the appropriate relative path of the Music Playlist Maker's `songs.txt` file.
 From the Music Playlist Maker:
 * Update to read and write to the `output` file.
 
@@ -23,10 +23,11 @@ Run `microservice.py`.
 
 ## How to Request data
 To request data from the microservice:
-1. The Music Playlist Maker needs to write `shuffle` or `sort` in the `output` file.
+* For shuffling a playlist, the Music Playlist Maker needs to write `shuffle` in the `output` file.
+* For sorting a playlist alphabetically, the Music Playlist Maker needs to write `sort` in the `output` file.
 
 ## How to Receive data
-The receive data from the microservice:
+To receive data from the microservice:
 1. The Music Playlist Maker needs to read from the `output` file.
 
 The data in the `output` file is organized as 1 song per line. Each song includes information as
