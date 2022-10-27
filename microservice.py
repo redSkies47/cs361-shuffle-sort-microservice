@@ -111,12 +111,9 @@ def update_text_file(song_playlist):
             file.write('\n')
 
 
-def microservice(input_file=input_playlist, output_file=output):
+def microservice():
     """
     Microservice for either shuffling or sorting a music playlist.
-
-    :input_file:
-    :output_file:
     """
     # finish = False
     # while not finish:
