@@ -23,8 +23,14 @@ Run `microservice.py`.
 
 ## How to Request data
 To request data from the microservice:
-* For shuffling a playlist, the Music Playlist Maker needs to write `shuffle` in the `output` file.
-* For sorting a playlist alphabetically, the Music Playlist Maker needs to write `sort` in the `output` file.
+* For **shuffling** a playlist, the Music Playlist Maker needs to write `shuffle` in the `output` file.
+* For **sorting** a playlist alphabetically, the Music Playlist Maker needs to write `sort` in the `output` file.
+
+#### Example Call
+Inside the `order.txt` file:
+```
+sort
+```
 
 ## How to Receive data
 To receive data from the microservice:
