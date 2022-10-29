@@ -45,4 +45,12 @@ And a sample entry is:
 Africa;Toto;4;45;Toto IV
 ```
 
-## UML Sequence Diagram
+## UML Sequence Diagrams
+
+#### Shuffling
+Here is the UML Sequence Diagram for Shuffling:
+![UML Sequence Diagram for Shuffling](Microservice-Shuffle.png)
+
+#### Sorting
+Here is the UML Sequence Diagram for Sorting:
+![UML Sequence Diagram for Sorting](Microservice-Sort.png)
