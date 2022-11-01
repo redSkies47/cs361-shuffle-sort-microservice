@@ -14,7 +14,7 @@ input_playlist = 'songs.txt'
 
 # receives command to either shuffle or sort
 # replaced with either shuffled or sorted playlist
-output = 'order.txt'
+output = 'cs361-shuffle-sort-microservice\order.txt'
 # output ='fakefile.txt'
 
 # list for holding the contents of the initial playlist
@@ -38,11 +38,11 @@ def get_valid_command():
         with open(output) as file:
             new_order_command = file.readline()
             
-        new_order_command.strip()  # removes new line character
+        # new_order_command.strip()  # removes new line character
 
-        if new_order_command == 'shuffle':
+        if 'shuffle' in new_order_command:
             return True, new_order_command
-        elif new_order_command == 'sort':
+        elif 'sort' in new_order_command:
             return True, new_order_command
         else:
             # reset new order command
@@ -121,6 +121,7 @@ def microservice():
 
         results, my_command = get_valid_command()
         # print('received a valid command:', str(results))
+        print('returned:', my_command)
 
         if results:
             song_num, init_playlist = get_current_playlist()
@@ -136,7 +137,7 @@ def microservice():
             # finish = True
             new_order_command = ''
         
-        time.sleep(3)
+        time.sleep(2)
 
 
 if __name__ == '__main__':
