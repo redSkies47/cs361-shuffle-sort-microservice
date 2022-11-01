@@ -15,7 +15,6 @@ input_playlist = 'songs.txt'
 # receives command to either shuffle or sort
 # replaced with either shuffled or sorted playlist
 output = 'cs361-shuffle-sort-microservice\order.txt'
-# output ='fakefile.txt'
 
 # list for holding the contents of the initial playlist
 initial_order = list()
@@ -115,13 +114,15 @@ def microservice():
     """
     Microservice for either shuffling or sorting a music playlist.
     """
+    print('Microservice awaits a command...')
+
     # finish = False
     # while not finish:
     while True:
 
         results, my_command = get_valid_command()
         # print('received a valid command:', str(results))
-        print('returned:', my_command)
+        # print('returned:', my_command)
 
         if results:
             song_num, init_playlist = get_current_playlist()
@@ -137,7 +138,7 @@ def microservice():
             # finish = True
             new_order_command = ''
         
-        time.sleep(2)
+        time.sleep(1)
 
 
 if __name__ == '__main__':
